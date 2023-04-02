@@ -1,7 +1,7 @@
 export interface IFormFields {
   id: string;
   label: string;
-  type: "TEXT" | "EMAIL";
+  type: "text" | "email" | "password";
   mandatory: boolean;
   identifier: string;
   editable: boolean;

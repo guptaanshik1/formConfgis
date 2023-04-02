@@ -3,10 +3,13 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Grid,
   Input,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { Field, FieldProps, Formik, FormikProps } from "formik";
 import { IFormFields } from "../types/IFormFields";
+import { calculateDimenstions } from "../utils/calculateDimensions";
 import { CFormikField, CFormikForm } from "./ChakraFormik";
 
 interface IProps {
@@ -24,6 +27,8 @@ const GForm = ({
   btnText,
   onSubmit,
 }: IProps) => {
+  const [maxRows, maxCols] = calculateDimenstions(formFields);
+  console.log(maxRows, maxCols);
   return (
     <Formik
       initialValues={initialValues}
@@ -33,29 +38,34 @@ const GForm = ({
       {({ values, errors, handleChange, handleSubmit }: FormikProps<any>) => {
         return (
           <CFormikForm>
-            {formFields?.map((field) => {
-              // console.log("field:", field);
+            {Array.from({ length: maxRows }, (_, i) => i).map((row) => {
               return (
-                <Field key={field?.id}>
-                  {({ field, form }) => {
-                    console.log("field:", field);
-                    return (
-                      <FormControl
-                        isRequired={field?.mandatory}
-                        gridColumn={field?.column}
-                        gridRow={field?.row}
-                      >
-                        <FormLabel>{field.label}</FormLabel>
-                        <Input
-                          {...field}
-                          id={field?.identifier}
-                          type={field?.type}
-                          isReadOnly={!field?.editable}
-                        />
-                      </FormControl>
-                    );
-                  }}
-                </Field>
+                <SimpleGrid columns={maxCols}>
+                  {formFields
+                    .filter((currentField) => currentField.row === row + 1)
+                    .map((formField) => {
+                      return (
+                        <Field key={formField?.id} name={formField?.identifier}>
+                          {({ field, form }: { field: any; form: any }) => {
+                            return (
+                              <FormControl isRequired={formField?.mandatory}>
+                                <FormLabel>{formField?.label}</FormLabel>
+                                <Input
+                                  {...field}
+                                  id={formField?.id}
+                                  name={formField?.identifier}
+                                  onChange={form.handleChange}
+                                  value={values[formField?.identifier]}
+                                  type={formField?.type}
+                                  isReadOnly={!formField?.editable}
+                                />
+                              </FormControl>
+                            );
+                          }}
+                        </Field>
+                      );
+                    })}
+                </SimpleGrid>
               );
             })}
           </CFormikForm>
