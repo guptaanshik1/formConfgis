@@ -12,12 +12,12 @@ import { IFormFields } from "../types/IFormFields";
 import { calculateDimenstions } from "../utils/calculateDimensions";
 import { CFormikField, CFormikForm } from "./ChakraFormik";
 
-interface IProps {
+interface IProps<T extends {}> {
   formFields: IFormFields[];
-  initialValues: {};
+  initialValues: T;
   validationSchema: {};
   btnText: string;
-  onSubmit: () => void;
+  onSubmit: <U extends T>(values: U) => void;
   styleProps?: {
     formStyles?: {};
     labelStyles?: {};
@@ -26,14 +26,14 @@ interface IProps {
   };
 }
 
-const GForm = ({
+const GForm = <T extends {}>({
   formFields,
   initialValues,
   validationSchema,
   btnText,
   onSubmit,
   styleProps,
-}: IProps) => {
+}: IProps<T>) => {
   const [maxRows, maxCols] = calculateDimenstions(formFields);
   return (
     <Formik
@@ -91,7 +91,7 @@ const GForm = ({
               );
             })}
             <Button type="submit" style={styleProps?.buttonStyles}>
-              Sign up
+              {btnText}
             </Button>
           </CFormikForm>
         );

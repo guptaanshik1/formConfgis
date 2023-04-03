@@ -82,10 +82,10 @@ const Form = () => {
 
   return (
     <GForm
-      formFields={formFields}
+      formFields={[formFields]}
       initialValues={initialValues}
       validationSchema={validationSchema}
-      btnText={"Signup"}
+      btnText={"Sign up"}
       onSubmit={onSubmit}
       styleProps={{
         formStyles,
