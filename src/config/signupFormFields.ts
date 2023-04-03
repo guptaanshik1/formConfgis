@@ -11,6 +11,8 @@ export const signupFormFields = [
     placeholder: "Type here",
     row: 1,
     column: 1,
+    colSpan: 1,
+    rowSpan: 1,
   },
   {
     id: "lastName",
@@ -22,6 +24,8 @@ export const signupFormFields = [
     placeholder: "Type Here",
     row: 1,
     column: 2,
+    colSpan: 1,
+    rowSpan: 1,
   },
   {
     id: "signUpKey",
@@ -33,6 +37,8 @@ export const signupFormFields = [
     placeholder: "Enter mobile number or email here",
     row: 2,
     column: 1,
+    colSpan: 2,
+    rowSpan: 1,
   },
   {
     id: "password",
@@ -44,6 +50,8 @@ export const signupFormFields = [
     placeholder: "Create password here",
     row: 3,
     column: 1,
+    colSpan: 2,
+    rowSpan: 1,
   },
   {
     id: "confirmPassword",
@@ -55,6 +63,8 @@ export const signupFormFields = [
     placeholder: "Re-enter password here",
     row: 4,
     column: 1,
+    colSpan: 2,
+    rowSpan: 1,
   },
   {
     id: "referralCode",
@@ -66,5 +76,7 @@ export const signupFormFields = [
     placeholder: "Re-enter password here",
     row: 5,
     column: 1,
+    colSpan: 2,
+    rowSpan: 1,
   },
 ];

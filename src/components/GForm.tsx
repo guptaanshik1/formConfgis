@@ -48,7 +48,11 @@ const GForm = ({
                         <Field key={formField?.id} name={formField?.identifier}>
                           {({ field, form }: { field: any; form: any }) => {
                             return (
-                              <FormControl isRequired={formField?.mandatory}>
+                              <FormControl
+                                isRequired={formField?.mandatory}
+                                gridColumn={`span ${formField?.colSpan}`}
+                                gridRow={`span ${formField?.rowSpan}`}
+                              >
                                 <FormLabel>{formField?.label}</FormLabel>
                                 <Input
                                   {...field}

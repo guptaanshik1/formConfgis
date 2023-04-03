@@ -8,4 +8,6 @@ export interface IFormFields {
   placeholder: string;
   row: number;
   column: number;
+  rowSpan: number;
+  colSpan: number;
 }
