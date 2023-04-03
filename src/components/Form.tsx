@@ -47,9 +47,37 @@ const Form = () => {
       .required("Confirm password is required"),
   };
   const validationSchema = Yup.object().shape(validation);
-  const onSubmit = () => {
-    const payload = { ...initialValues };
-    console.log(payload);
+  const onSubmit = (values: IInitialValues) => {
+    // const payload = { ...initialValues };
+    console.log(values);
+  };
+  const formStyles = {
+    width: "364px",
+    height: "680px",
+    backgroundColor: "#FFFFFF",
+    margin: "10px",
+    padding: "20px",
+  };
+  const labelStyles = {
+    fontSize: "14px",
+    lineHeight: "20px",
+    color: "#1F1F1F",
+    fontWeight: 600,
+  };
+  const fieldStyles = {
+    borderRadius: "4px",
+    margin: "10px 0",
+    border: "1px solid #D6D6D6",
+    boxSizing: "border-box",
+    alignItems: "center",
+  };
+  const buttonStyles = {
+    padding: "10px 21px",
+    backgroundColor: "#025FCA",
+    color: "#FFFFFF",
+    width: "300px",
+    borderRadius: "4px",
+    margin: "10px 0",
   };
 
   return (
@@ -59,6 +87,12 @@ const Form = () => {
       validationSchema={validationSchema}
       btnText={"Signup"}
       onSubmit={onSubmit}
+      styleProps={{
+        formStyles,
+        labelStyles,
+        fieldStyles,
+        buttonStyles,
+      }}
     />
   );
 };
